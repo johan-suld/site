@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wiki stats</title>
+</head>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+body {
+    max-width: max-content;
+    margin: auto;
+}
+</style>
+<body>
+    <br><br>
+    Välj datum, max 60 dagar bakåt i tiden<br><br>
+    <form action = "/" method = 'POST'>
+        <input type = "date" id = "date" name = "date">
+        <input type = "submit" value = "Sök">
+    </form>
+    <br><br>
+    {% if date is defined %}
+        Visar resultat för {{ date }}<br>
+    {% else %}
+    {% endif %}
+    {{ error }}
+    <br><br>
+    <table>
+        <th style="text-align:left">Artikel</th>
+        <th style="text-align:left">Sidvisningar</th>
+        {% for i in lines %}
+            <tr>
+            {% for j in i %}
+                <td>{{ j }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
